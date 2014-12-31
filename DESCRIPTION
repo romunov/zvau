@@ -8,6 +8,8 @@ Maintainer: Roman Luštrik <roman.lustrik@biolitika.si>
 Description: Several functions used in daily routine of our work.
 Depends:
     R (>= 3.1.1)
+Imports:
+    adegenet
 License: GPL-2
 Encoding: UTF-8
 LazyData: FALSE
