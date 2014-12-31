@@ -11,7 +11,7 @@ Department of biology, Biotechnical faculty, University of Ljubljana.
 \details{
 So far the functions included in the package are:
 \itemize{
-  \item \code{\link{read.clumpp}} Read result of Clumpp into a \code{data.frame}
+  \item \code{\link{readClumpp}} Read result of Clumpp into a \code{data.frame}
   \item \code{\link{writeStructure}} Write a \code{genind} object to be analyzed using Structure
   \item \code{\link{writeGenePop}} Write a \code{genind} object to be analyzed using GENEPOP
 }

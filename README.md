@@ -2,7 +2,7 @@ A bundle of functions we use in our daily routine here at the ecology group (Dep
 
 The package currently contains the following functions:
 
-* `read.clumpp` Read result of Clumpp into a `data.frame`
+* `readClumpp` Read result of Clumpp into a `data.frame`
 * `writeStructure` Write a `genind` object to be analyzed using Structure
 * `writeGenePop` Write a `genind` object to be analyzed using GENEPOP
 

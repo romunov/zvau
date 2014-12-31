@@ -1,6 +1,6 @@
-#' Read Clumpp file
+#' Read a Clumpp file
 #' 
-#' Function reads Clumpp file and outputs all the colums right of colon (:).
+#' Function reads Clumpp file and outputs all the colums right of colon (:) as a \code{data.frame}.
 #' 
 #' @author Roman Luštrik {roman.lustrik@@biolitika.si}
 #' 
@@ -16,10 +16,10 @@
 #' 7        7   (0)      3 :  0.0239 0.9761"
 #' 
 #' write(x, "temp.clumpp.txt")
-#' read.clumpp("temp.clumpp.txt")
+#' readClumpp("temp.clumpp.txt")
 #' unlink("temp.clumpp.txt")
 
-read.clumpp <- function(x) {
+readClumpp <- function(x) {
   x <- readLines(x)
   x <- do.call("rbind", strsplit(unlist(lapply(strsplit(x, ":  "), "[[", 2)), " "))
   x <- as.data.frame(apply(x, MARGIN = 2, as.numeric))
