@@ -11,4 +11,15 @@ you will need
 
 * R
 * Rtools (see [http://cran.r-project.org/bin/windows/Rtools/](http://cran.r-project.org/bin/windows/Rtools/)) to build the package
-* LaTeX ([MiKTeX](http://miktex.org/download) on Windows) to build documentation
+* LaTeX ([MiKTeX](http://miktex.org/download) on Windows) to build documentation.
+
+To install from a binary package, you can download the .zip file (may not be up to date!) by clicking Raw and saving it to a (known) location
+
+![How to download a zip file from a repository](./sandbox/download_raw.png)
+
+After you have a local copy, you can install the package from within R using
+
+```r
+install.packages("zvau_*.zip", repos = NULL) # change filename according to the version
+```
+
