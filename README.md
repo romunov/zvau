@@ -7,7 +7,7 @@ The package currently contains the following functions:
 * `writeGenePop` Write a `genind` object to be analyzed using GENEPOP
 
 ### Package installation
-#### Using easy way via `devtools`
+#### The easy way via `devtools`
 
 To install the package using
 
