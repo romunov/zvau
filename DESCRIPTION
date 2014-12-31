@@ -1,0 +1,13 @@
+Package: zvau
+Type: Package
+Title: Misc functions used by our ecology lab
+Version: 0.1
+Date: 2014-12-31
+Author: Roman Luštrik
+Maintainer: Roman Luštrik <roman.lustrik@biolitika.si>
+Description: Several functions used in daily routine of our work.
+Depends:
+    R (>= 3.1.1)
+License: GPL-2
+Encoding: UTF-8
+LazyData: FALSE
