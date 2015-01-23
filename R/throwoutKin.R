@@ -46,7 +46,7 @@ throwoutKin <- function(data, treshold) {
   }
   
   out <- sub("D_", "", out) # remove "D_"
-  list(unique.animals = out, cleaned.data = master)
+  list(unique.animals = out, cleaned.data = data)
 }
 
 
