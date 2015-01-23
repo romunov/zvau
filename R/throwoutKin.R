@@ -30,7 +30,7 @@ throwoutKin <- function(data, treshold) {
   while (length(ua) > 0) {
     # subset data for one individual
     x.all <- data[data$animal1 == ua[1] | data$animal2 == ua[1], ]
-    x.sub <- x.all[x.all$stat >= th, ] # and find which comparisons are >= threshold
+    x.sub <- x.all[x.all$stat >= treshold, ] # and find which comparisons are >= threshold
     
     if (nrow(x.sub) > 0) {
       out <- c(out, ua[1])
