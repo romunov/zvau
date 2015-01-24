@@ -1,7 +1,7 @@
 #' Function finds non related individuals.
 #' 
 #' For each individual, remove kin based on treshold value (see Blouin 2003). Data comes from
-#' software \code{coancestry} (Julian Wang).
+#' software \code{coancestry} (Jinliang Wang).
 #' 
 #' @param data \code{data.frame} A \code{data.frame} with columns (in this order) \code{animal1},
 #' \code{animal2} and \code{stat}.
