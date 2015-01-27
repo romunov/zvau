@@ -2,7 +2,7 @@
 #' 
 #' Function reads Clumpp file and outputs all the colums right of colon (:) as a \code{data.frame}.
 #' 
-#' @author Roman Luštrik {roman.lustrik@@biolitika.si}
+#' @author Roman Lustrik {roman.lustrik@@biolitika.si}
 #' 
 #' @param x Character Character string to the text file produced by Clumpp. Path can be absolute or relative.
 #' @return A data.frame with K columns (see Structure documentation for the meaning of K).
