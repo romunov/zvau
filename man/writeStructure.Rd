@@ -3,12 +3,14 @@
 \alias{writeStructure}
 \title{Function writes a genind object to a text file}
 \usage{
-writeStructure(genotipi, pop, path)
+writeStructure(genotipi, pop, path, ...)
 }
 \arguments{
 \item{pop}{Vector A numeric vector which corresponds to population.}
 
 \item{path}{Character A character vector of relative or absolute path of the resulting file.}
+
+\item{...}{Arguments passed to \code{write.table}.}
 
 \item{genotypes}{genind A \code{genind} object to be exported.}
 }
