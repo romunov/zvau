@@ -28,6 +28,6 @@ readClumpp("temp.clumpp.txt")
 unlink("temp.clumpp.txt")
 }
 \author{
-Roman Luštrik {roman.lustrik@biolitika.si}
+Roman Lustrik {roman.lustrik@biolitika.si}
 }
 

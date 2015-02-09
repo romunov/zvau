@@ -14,7 +14,7 @@ value of >= \code{treshold} will be removed from the data set.}
 }
 \description{
 For each individual, remove kin based on treshold value (see Blouin 2003). Data comes from
-software \code{coancestry} (Julian Wang).
+software \code{coancestry} (Jinliang Wang).
 }
 \examples{
 \dontrun{
