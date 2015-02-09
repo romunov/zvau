@@ -5,6 +5,7 @@ The package currently contains the following functions:
 * `readClumpp` Read result of Clumpp into a `data.frame`
 * `writeStructure` Write a `genind` object to be analyzed using Structure
 * `writeGenePop` Write a `genind` object to be analyzed using GENEPOP
+* `subsetGenData` Handle dropping levels in \code{other} slot
 
 ### Package installation
 #### The easy way via `devtools`
