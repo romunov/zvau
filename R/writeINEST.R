@@ -3,7 +3,7 @@
 #' @param x \code{genind} object
 #' @param file Character vector. Path where file is written to.
 #' @param spatial Logical. If TRUE, spatial coordinates of samples will be written to file.
-#' @author Roman Lustrik (roman.lustrik@@biolitika.si)
+#' @author Roman Lustrik (\email{roman.lustrik@@biolitika.si})
 #' 
 #' @importFrom magrittr "%>%"
 #' @importFrom adegenet nInd

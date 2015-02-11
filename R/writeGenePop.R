@@ -2,7 +2,7 @@
 #' 
 #' Function promises to write two genind objects to a text file.
 #' 
-#' @author Tomaz Skrbinsek {tomaz.skrbinsek@@gmail.com}
+#' @author Tomaz Skrbinsekek (\email{tomaz.skrbinsek@@gmail.com})
 #' @param genotypes1 genind A \code{genind} object.
 #' @param genotypes2 genind A \code{genind} object
 #' @param path Character A relative or absolute path where file is written to.

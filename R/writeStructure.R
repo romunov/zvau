@@ -2,7 +2,7 @@
 #' 
 #' Function will convert a genind file and population designation to a text file.
 #' 
-#' @author Tomaz Skrbinsek {tomaz.skrbinsek@@gmail.com}
+#' @author Tomaz Skrbinsek (\email{tomaz.skrbinsek@@gmail.com})
 #' 
 #' @param genotipi genind A \code{genind} object to be exported.
 #' @param pop Vector A numeric vector which corresponds to population.
