@@ -4,6 +4,7 @@
 #' functions drops levels by reconstructing the object from scratch.
 #' 
 #' @param x A subsetted \code{genind} object, possibly with other fields in \code{other} slot.
+#' @author Roman Lustrik (roman.lustrik@@biolitika.si)
 
 subsetGenData <- function(x) {
   oth <- lapply(other(x), droplevels)

@@ -19,8 +19,8 @@ So far the functions included in the package are:
 \tabular{ll}{
 Package: \tab zvau\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
-Date: \tab 2014-12-31\cr
+Version: \tab 0.2\cr
+Date: \tab 2015-02-11\cr
 License: \tab GPL-2\cr
 LazyData: \tab no\cr
 }

@@ -4,7 +4,7 @@
 #' 
 #' @author Tomaz Skrbinsek {tomaz.skrbinsek@@gmail.com}
 #' 
-#' @param genotypes genind A \code{genind} object to be exported.
+#' @param genotipi genind A \code{genind} object to be exported.
 #' @param pop Vector A numeric vector which corresponds to population.
 #' @param path Character A character vector of relative or absolute path of the resulting file.
 #' @param ... Arguments passed to \code{write.table}.
