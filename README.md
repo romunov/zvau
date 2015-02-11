@@ -6,6 +6,7 @@ The package currently contains the following functions:
 * `writeStructure` Write a `genind` object to be analyzed using Structure
 * `writeGenePop` Write a `genind` object to be analyzed using GENEPOP
 * `subsetGenData` Handle dropping levels in \code{other} slot
+* `writeINEST` Will write INEST file from a \code{genind} object.
 
 ### Package installation
 #### The easy way via `devtools`
