@@ -3,9 +3,9 @@ Type: Package
 Title: Misc functions used by our ecology lab
 Version: 0.2
 Date: 2015-02-11
-Author: Roman Lu\009atrik
-Maintainer: Roman Lu\009atrik <roman.lustrik@biolitika.si>
-Description: Several functions used in daily routine of our work.
+Author: Roman Lustrik
+Maintainer: Roman Lustrik <roman.lustrik@biolitika.si>
+Description: Several functions used in our daily routine.
 Depends:
     R (>= 3.1.1)
 Imports:
