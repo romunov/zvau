@@ -6,6 +6,9 @@
 #' 
 #' @param x Character Character string to the text file produced by Clumpp. Path can be absolute or relative.
 #' @return A data.frame with K columns (see Structure documentation for the meaning of K).
+#' 
+#' @export
+#' 
 #' @examples
 #' x <- "1        1   (0)      2 :  0.0403 0.9597 
 #' 2        2   (0)      2 :  0.0209 0.9791 

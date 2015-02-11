@@ -5,6 +5,13 @@
 #' 
 #' @param x A subsetted \code{genind} object, possibly with other fields in \code{other} slot.
 #' @author Roman Lustrik (roman.lustrik@@biolitika.si)
+#' 
+#' @importFrom adegenet genind2df
+#' @importFrom adegenet df2genind
+#' @importFrom adegenet locNames
+#' @importFrom adegenet indNames
+#' 
+#' @export
 
 subsetGenData <- function(x) {
   oth <- lapply(other(x), droplevels)

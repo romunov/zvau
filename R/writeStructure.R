@@ -9,6 +9,9 @@
 #' @param path Character A character vector of relative or absolute path of the resulting file.
 #' @param ... Arguments passed to \code{write.table}.
 #' 
+#' @importFrom adegenet genind2df
+#' @export
+#' 
 #' @return Text file
  
 writeStructure <- function(genotipi, pop, path, ...) {

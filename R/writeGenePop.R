@@ -7,7 +7,13 @@
 #' @param genotypes2 genind A \code{genind} object
 #' @param path Character A relative or absolute path where file is written to.
 #' @param note Character A character vector of length 1 reserved for notes.
+#' 
+#' @importFrom adegenet locNames
+#' @importFrom adegenet genind2df
+#' @importFrom adegenet indNames
 #'
+#' @export
+#' 
 #' @return Text file
 
 writeGenePop <- function(genotypes1, genotypes2, path, note) {
@@ -26,7 +32,7 @@ writeGenePop <- function(genotypes1, genotypes2, path, note) {
   write.table(outgenotypes, path, sep = " ", row.names = FALSE, col.names = FALSE, 
               append = T, quote = FALSE)
   
-  # še drug objekt
+  # second object
   cat("POP\n", file = path, append = TRUE)
   outgenotypes <- genind2df(genotypes2, sep = "")
   outgenotypes[is.na(outgenotypes)] <- "000000"

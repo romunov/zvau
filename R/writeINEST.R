@@ -4,6 +4,17 @@
 #' @param file Character vector. Path where file is written to.
 #' @param spatial Logical. If TRUE, spatial coordinates of samples will be written to file.
 #' @author Roman Lustrik (roman.lustrik@@biolitika.si)
+#' 
+#' @importFrom magrittr "%>%"
+#' @importFrom adegenet nInd
+#' @importFrom adegenet other
+#' @importFrom adegenet nLoc
+#' @importFrom adegenet locNames
+#' @importFrom adegenet genind2df
+#' @importFrom adegenet indNames
+#' 
+#' @export
+#' 
 #' @examples
 #' 
 #' library(adegenet)

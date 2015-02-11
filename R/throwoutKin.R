@@ -9,6 +9,8 @@
 #' value of >= \code{treshold} will be removed from the data set.
 #' @author Roman Lustrik, Maja Jelencic
 #' 
+#' @export
+#' 
 #' @examples
 #' \dontrun{
 #'   kin <- read.table("./sandbox/RelatednessCI95.Txt", sep = ",")

@@ -12,4 +12,7 @@ subsetGenData(x)
 Get a fully subsetted \code{genind} object. \code{genind} methods handles subsetting and this
 functions drops levels by reconstructing the object from scratch.
 }
+\author{
+Roman Lustrik (roman.lustrik@biolitika.si)
+}
 
