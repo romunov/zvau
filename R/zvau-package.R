@@ -17,7 +17,7 @@
 #' LazyData: \tab no\cr
 #' }
 #'
-#' @author Roman Lustrik (\email{roman.lustrik@@biolitika.si}), Tomaz Skrbinsek ( \email{tomaz.skrbinsek@@gmail.com}), Maja Jelencic (\email{mjelencic@gmail.com})
+#' @author Roman Lustrik (\email{roman.lustrik@@biolitika.si}), Tomaz Skrbinsek (\email{tomaz.skrbinsek@@gmail.com}), Maja Jelencic (\email{mjelencic@@gmail.com})
 #'
 #' Maintainer: Roman Lustrik (\email{roman.lustrik@@biolitika.si})
 #' @name zvau-package
