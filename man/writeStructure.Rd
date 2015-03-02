@@ -4,19 +4,19 @@
 \alias{writeStructure}
 \title{Function writes a genind object to a text file}
 \usage{
-writeStructure(genotipi, pop, path, ...)
+writeStructure(x, file, ...)
 }
 \arguments{
-\item{genotipi}{genind A \code{genind} object to be exported.}
+\item{x}{genind A \code{genind} object to be exported.}
 
-\item{pop}{Vector A numeric vector which corresponds to population.}
-
-\item{path}{Character A character vector of relative or absolute path of the resulting file.}
+\item{file}{Character A character vector of relative or absolute path of the resulting file.}
 
 \item{...}{Arguments passed to \code{write.table}.}
 }
 \value{
-Text file
+Writese a text file to a specified path or current \code{getwd()}. Returns
+a population legend if population is designated. Otherwise returns a message notifying
+the user legend is not applicable.
 }
 \description{
 Function will convert a genind file and population designation to a text file.

@@ -4,23 +4,35 @@
 #' 
 #' @author Tomaz Skrbinsek (\email{tomaz.skrbinsek@@gmail.com})
 #' 
-#' @param genotipi genind A \code{genind} object to be exported.
-#' @param pop Vector A numeric vector which corresponds to population.
-#' @param path Character A character vector of relative or absolute path of the resulting file.
+#' @param x genind A \code{genind} object to be exported.
+#' @param file Character A character vector of relative or absolute path of the resulting file.
 #' @param ... Arguments passed to \code{write.table}.
 #' 
 #' @importFrom adegenet genind2df
 #' @export
 #' 
-#' @return Text file
+#' @return Writese a text file to a specified path or current \code{getwd()}. Returns
+#' a population legend if population is designated. Otherwise returns a message notifying
+#' the user legend is not applicable.
  
-writeStructure <- function(genotipi, pop, path, ...) {
-  gen <- genind2df(genotipi, sep = " ")
+writeStructure <- function(x, file, ...) {
+  # Explicitly remove population.
+  gen <- genind2df(x, sep = " ", usepop = FALSE)
   gen[is.na(gen)] <- "-9 -9"
-  output <- cbind(id = row.names(gen), pop = as.numeric(pop), gen[2:ncol(gen)])
+
+  # If there is no population designation, assume only one population.
+  if (is.null(pop(x))) {
+    pop <- rep(1, times = nrow(gen))
+  } else {
+    pop <- as.numeric(pop(x))
+  }
   
-  write.table(output, path, sep = " ")
+  output <- cbind(id = row.names(gen), pop = pop, gen)
+  write.table(output, file, sep = " ", row.names = FALSE) # allele separated by whitespace
   
-  outLegend <- data.frame(id = 1:length(levels(pop)), Pop = levels(pop))
-  outLegend
+  if (!is.null(pop(x))) {
+    out <- data.frame(id = 1:length(unique(pop)), Pop = unique(pop(x)))
+  } else {
+    message("No population defined, one population assumed, no legend produced.")
+  }
 }
