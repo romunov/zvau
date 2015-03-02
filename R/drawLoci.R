@@ -37,6 +37,8 @@ drawLoci <- function(x) {
   print(
     go <- ggplot(out, aes_string(x = "x", y = "allele")) +
       theme_bw() +
+      xlab("Alleles") +
+      ylab("Loci") + 
       geom_line(color = "grey50") + 
       geom_point(size = 3, shape = 1) +
       scale_y_discrete(label = names(al.list)) +
