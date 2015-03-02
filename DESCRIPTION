@@ -10,7 +10,8 @@ Depends:
     R (>= 3.1.1)
 Imports:
     adegenet,
-    magrittr
+    magrittr,
+    ggplot2
 License: GPL-2
 Encoding: UTF-8
 LazyData: FALSE

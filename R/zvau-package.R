@@ -6,6 +6,7 @@
 #'   \item \code{\link{readClumpp}} Read result of Clumpp into a \code{data.frame}
 #'   \item \code{\link{writeStructure}} Write a \code{genind} object to be analyzed using Structure
 #'   \item \code{\link{writeGenePop}} Write a \code{genind} object to be analyzed using GENEPOP
+#'   \item \code{\link{drawLoci}} Plot alleles using a list of loci
 #' }
 #' 
 #' \tabular{ll}{
@@ -17,10 +18,11 @@
 #' LazyData: \tab no\cr
 #' }
 #'
-#' @author Roman Lustrik (\email{roman.lustrik@@biolitika.si}), Tomaz Skrbinsek ( \email{tomaz.skrbinsek@@gmail.com}), Maja Jelencic (\email{mjelencic@gmail.com})
+#' @author Roman Lustrik (\email{roman.lustrik@@biolitika.si}), Tomaz Skrbinsek ( \email{tomaz.skrbinsek@@gmail.com}), Maja Jelencic (\email{mjelencic@@gmail.com})
 #'
 #' Maintainer: Roman Lustrik (\email{roman.lustrik@@biolitika.si})
 #' @name zvau-package
+#' @import ggplot2
 #' @aliases zvau
 #' @docType package
 #' @title Misc functions used by out group

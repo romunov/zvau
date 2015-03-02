@@ -7,6 +7,7 @@ The package currently contains the following functions:
 * `writeGenePop` Write a `genind` object to be analyzed using GENEPOP
 * `subsetGenData` Handle dropping levels in `other` slot
 * `writeINEST` Will write INEST file from a `genind` object
+* `drawLoci` Will draw alleles from a list of loci
 
 ### Package installation
 #### The easy way via `devtools`
