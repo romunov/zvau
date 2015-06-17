@@ -1,4 +1,4 @@
-A bundle of functions we use in our daily routine here at the ecology group (Department of biology, Biotechnical faculty, University of Ljubljana).
+A bundle of functions we use in our daily routine here at the Ecology group (Department of biology, Biotechnical faculty, University of Ljubljana).
 
 The package currently contains the following functions:
 
@@ -27,7 +27,7 @@ you will need
 * LaTeX ([MiKTeX](http://miktex.org/download) on Windows) to build documentation.
 
 #### Via binary package
-To install from a binary package, you can download the .zip file (may not be up to date!) by clicking Raw and saving it to a (known) location
+To install from a binary package, you can download the .zip file (may not be up to date!) by clicking Raw and saving it to a (known) location.
 
 ![How to download a zip file from a repository](./images/download_raw.png)
 
