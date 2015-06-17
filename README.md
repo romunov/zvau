@@ -8,6 +8,7 @@ The package currently contains the following functions:
 * `subsetGenData` Handle dropping levels in `other` slot
 * `writeINEST` Will write INEST file from a `genind` object
 * `drawLoci` Will draw alleles from a list of loci
+* `findIntegerInterval` Find a repeating sequence of integers
 
 ### Package installation
 #### The easy way via `devtools`
