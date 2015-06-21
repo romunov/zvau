@@ -2,6 +2,7 @@
 
 export(drawLoci)
 export(findIntegerInterval)
+export(findSeason)
 export(readClumpp)
 export(subsetGenData)
 export(throwoutKin)
