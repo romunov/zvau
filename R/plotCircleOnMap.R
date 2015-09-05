@@ -3,10 +3,13 @@
 #' This is not yet a fully general function for plotting circles on a google map as presented by the \code{dismo} package.
 #' 
 #' @param coords \code{data.frame} with columns latitude, longitude and projection already defined as in \code{sp}.
-#' @param multiply.r Numeric. Multiplicator that will inflate or deflate circle (original in miles).
-#' @param multiply.se Numeric. Same as for \code{multiply.r} but for line width (standard error).
+#' @param multiply.r Numeric. Multiplicator that will inflate or deflate circle (original in miles). If plotting several
+#' variables, length should match length of \code{var}.
+#' @param multiply.se Numeric. Same as for \code{multiply.r} but for line width (standard error). If plotting several
+#' variables, length should match length of \code{var}.
 #' @param map A \code{RasterLayer} object from \code{dismo:::gmap}.
-#' @param var A character vector of variable name to be plotted.
+#' @param var A character vector of variable names to be plotted.
+#' @param lty Parameters for line type passed on to \code{plot}. Should be of equal length as \code{var}.
 #' 
 #' @author Roman Lustrik (roman.lustrik@@biolitika.si)
 #' @return A list of input data and map used in plotting.
@@ -39,25 +42,41 @@
 
 #' library(dismo)
 #' my.map <- gmap(extent(x), zoom = 4, scale = 2)
-#' plotCircleOnMap(coords = x, multiply.r = 100, multiply.se = 10, map = my.map, var = "Ar")
+#' plotCircleOnMap(coords = coords, multiply.r = c(100, 50), multiply.se = c(10, 20), 
+#'                 map = d.map, var = c("Ar", "Her"), lty = c("solid", "dashed"))
 
-plotCircleOnMap <- function(coords, multiply.r, multiply.se, map, var) {
+plotCircleOnMap <- function(coords, multiply.r, multiply.se, map, var, lty = rep("solid", length(var))) {
   mile2meter <- function(x) {
     x * 1609.344
   }
   
   coords.mrc <- spTransform(coords, CRS = CRS(projection(map)))
-  
-  coords.list <- vector("list", nrow(coords.mrc))
-  for (i in seq_len(nrow(coords.mrc))) {
-    coords.list[i] <- gBuffer(coords.mrc[i, ], width = multiply.r * mile2meter(coords.mrc[i, ]@data[var]))
-  }
+  names(var) <- var
+
+    each.var.buff <- mapply(FUN = function(x, multiply.r) {
+    coords.list <- vector("list", nrow(coords.mrc))
+    for (i in seq_len(nrow(coords.mrc))) {
+      coords.list[i] <- gBuffer(coords.mrc[i, ], width = multiply.r * mile2meter(coords.mrc[i, ]@data[x]))
+    }
+    coords.list
+  },
+  x = as.list(var),
+  multiply.r = as.list(multiply.r), SIMPLIFY = FALSE)
   
   plot(map)
   
-  mapply(coords.list, as.list(coords.mrc@data[paste("SE", var, sep = "")]), FUN = function(x, y, multiply.se) {
-    plot(x, add = TRUE, lwd = multiply.se*y)
-  }, multiply.se = multiply.se)
+  mapply(each.var.buff, 
+         as.list(multiply.se), 
+         as.list(lty), 
+         names(each.var.buff), 
+         FUN = function(coords.list, multiply.se, lty, var) {
+           mapply(coords.list, 
+                  as.list(coords.mrc@data[, paste("SE", var, sep = "")] * multiply.se), 
+                  as.list(rep(lty, length(coords.list))), 
+                  FUN = function(x, y, lty) {
+                    plot(x, add = TRUE, lwd = y, lty = lty)
+                  })
+         })
   
   return(list(coords, map))
 }
