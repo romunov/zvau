@@ -13,9 +13,15 @@
 #' 
 #' @importFrom dismo gmap
 #' @importFrom rgeos gBuffer
-#' @importFrom sp spTransform CRS projection
+#' @importFrom sp spTransform CRS 
+#' @importFrom raster projection
 #' @export
 #' @examples 
+#' 
+#' library(sp)
+#' library(rgeos)
+#' library(dismo)
+#' library(raster)
 #' 
 #' x <- structure(list(long = c(42.406612, 45.490354, 44.134308, 45.227887, 
 #' 63.572205, 62.41059, 63.732431, 59.034802, 52.167186, 58.909385, 
