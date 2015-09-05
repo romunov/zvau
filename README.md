@@ -9,8 +9,8 @@ The package currently contains the following functions:
 * `writeINEST` Will write INEST file from a `genind` object
 * `drawLoci` Will draw alleles from a list of loci
 * `findIntegerInterval` Find a repeating sequence of integers
-* `findSeason` For a datum, find a season based on equinox/solstice.
-* `plotCircleOnMap` Will plot circles on a map based for a given variable and its SE.
+* `findSeason` For a datum, find a season based on equinox/solstice
+* `plotCircleOnMap` Will plot circles on a map based for a given variable and its SE
 
 ### Package installation
 #### The easy way via `devtools`
