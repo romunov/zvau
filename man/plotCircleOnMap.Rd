@@ -4,18 +4,23 @@
 \alias{plotCircleOnMap}
 \title{Plot circles on a map}
 \usage{
-plotCircleOnMap(coords, multiply.r, multiply.se, map, var)
+plotCircleOnMap(coords, multiply.r, multiply.se, map, var, lty = rep("solid",
+  length(var)))
 }
 \arguments{
 \item{coords}{\code{data.frame} with columns latitude, longitude and projection already defined as in \code{sp}.}
 
-\item{multiply.r}{Numeric. Multiplicator that will inflate or deflate circle (original in miles).}
+\item{multiply.r}{Numeric. Multiplicator that will inflate or deflate circle (original in miles). If plotting several
+variables, length should match length of \code{var}.}
 
-\item{multiply.se}{Numeric. Same as for \code{multiply.r} but for line width (standard error).}
+\item{multiply.se}{Numeric. Same as for \code{multiply.r} but for line width (standard error). If plotting several
+variables, length should match length of \code{var}.}
 
 \item{map}{A \code{RasterLayer} object from \code{dismo:::gmap}.}
 
-\item{var}{A character vector of variable name to be plotted.}
+\item{var}{A character vector of variable names to be plotted.}
+
+\item{lty}{Parameters for line type passed on to \code{plot}. Should be of equal length as \code{var}.}
 }
 \value{
 A list of input data and map used in plotting.
@@ -24,6 +29,11 @@ A list of input data and map used in plotting.
 This is not yet a fully general function for plotting circles on a google map as presented by the \code{dismo} package.
 }
 \examples{
+library(sp)
+library(rgeos)
+library(dismo)
+library(raster)
+
 x <- structure(list(long = c(42.406612, 45.490354, 44.134308, 45.227887,
 63.572205, 62.41059, 63.732431, 59.034802, 52.167186, 58.909385,
 57.638552, 57.873012), lat = c(13.285433, 14.428011, 15.372835,
@@ -39,7 +49,8 @@ coordinates(x) <- ~ lat + long
 projection(x) <- "+init=epsg:4326"
 library(dismo)
 my.map <- gmap(extent(x), zoom = 4, scale = 2)
-plotCircleOnMap(coords = x, multiply.r = 100, multiply.se = 10, map = my.map, var = "Ar")
+plotCircleOnMap(coords = coords, multiply.r = c(100, 50), multiply.se = c(10, 20),
+                map = d.map, var = c("Ar", "Her"), lty = c("solid", "dashed"))
 }
 \author{
 Roman Lustrik (roman.lustrik@biolitika.si)
