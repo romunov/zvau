@@ -10,6 +10,7 @@
 #' @param map A \code{RasterLayer} object from \code{dismo:::gmap}.
 #' @param var A character vector of variable names to be plotted.
 #' @param lty Parameters for line type passed on to \code{plot}. Should be of equal length as \code{var}.
+#' @param plot.se If standard error is to be plotted as line width, mark this as \code{TRUE}.
 #' 
 #' @author Roman Lustrik (roman.lustrik@@biolitika.si)
 #' @return A list of input data and map used in plotting.
@@ -45,15 +46,16 @@
 #' plotCircleOnMap(coords = coords, multiply.r = c(100, 50), multiply.se = c(10, 20), 
 #'                 map = d.map, var = c("Ar", "Her"), lty = c("solid", "dashed"))
 
-plotCircleOnMap <- function(coords, multiply.r, multiply.se, map, var, lty = rep("solid", length(var))) {
+plotCircleOnMap <- function(coords, multiply.r = rep(1, length(var)), multiply.se = rep(1, length(var)), 
+                            map, var, lty = rep("solid", length(var)), plot.se = FALSE) {
   mile2meter <- function(x) {
     x * 1609.344
   }
   
   coords.mrc <- spTransform(coords, CRS = CRS(projection(map)))
   names(var) <- var
-
-    each.var.buff <- mapply(FUN = function(x, multiply.r) {
+  
+  each.var.buff <- mapply(FUN = function(x, multiply.r) {
     coords.list <- vector("list", nrow(coords.mrc))
     for (i in seq_len(nrow(coords.mrc))) {
       coords.list[i] <- gBuffer(coords.mrc[i, ], width = multiply.r * mile2meter(coords.mrc[i, ]@data[x]))
@@ -70,11 +72,23 @@ plotCircleOnMap <- function(coords, multiply.r, multiply.se, map, var, lty = rep
          as.list(lty), 
          names(each.var.buff), 
          FUN = function(coords.list, multiply.se, lty, var) {
+           # (1) if plotting of SE is selected, select appropriate columns - otherwise return NA
+           # this if clause is directly linked to # (2)
+           if (plot.se == TRUE) {
+             se.cols <- coords.mrc@data[, paste("SE", var, sep = "")] * multiply.se
+           } else {
+             se.cols <- rep(NA, length(coords.list))
+           }
            mapply(coords.list, 
-                  as.list(coords.mrc@data[, paste("SE", var, sep = "")] * multiply.se), 
+                  as.list(se.cols), 
                   as.list(rep(lty, length(coords.list))), 
                   FUN = function(x, y, lty) {
-                    plot(x, add = TRUE, lwd = y, lty = lty)
+                    # (2) this is linked to (1)
+                    if (plot.se == TRUE) {
+                      plot(x, add = TRUE, lwd = y, lty = lty)
+                    } else {
+                      plot(x, add = TRUE, lty = lty)
+                    }
                   })
          })
   
