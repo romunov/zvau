@@ -4,8 +4,9 @@
 \alias{plotCircleOnMap}
 \title{Plot circles on a map}
 \usage{
-plotCircleOnMap(coords, multiply.r, multiply.se, map, var, lty = rep("solid",
-  length(var)))
+plotCircleOnMap(coords, multiply.r = rep(1, length(var)),
+  multiply.se = rep(1, length(var)), map, var, lty = rep("solid",
+  length(var)), plot.se = FALSE)
 }
 \arguments{
 \item{coords}{\code{data.frame} with columns latitude, longitude and projection already defined as in \code{sp}.}
@@ -21,6 +22,8 @@ variables, length should match length of \code{var}.}
 \item{var}{A character vector of variable names to be plotted.}
 
 \item{lty}{Parameters for line type passed on to \code{plot}. Should be of equal length as \code{var}.}
+
+\item{plot.se}{If standard error is to be plotted as line width, mark this as \code{TRUE}.}
 }
 \value{
 A list of input data and map used in plotting.
