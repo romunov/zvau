@@ -1,7 +1,7 @@
 Package: zvau
 Type: Package
 Title: Misc functions used by our ecology lab
-Version: 0.2.1
+Version: 0.21
 Date: 2015-02-11
 Author: Roman Lustrik
 Maintainer: Roman Lustrik <roman.lustrik@biolitika.si>
@@ -13,9 +13,11 @@ Imports:
     magrittr,
     ggplot2,
     sp,
-    dismo,
     rgeos,
+    dismo,
     raster
+Suggests: 
+    rgdal
 License: GPL-2
 Encoding: UTF-8
 LazyData: FALSE

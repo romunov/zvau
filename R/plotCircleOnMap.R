@@ -17,7 +17,7 @@
 #' 
 #' @importFrom dismo gmap
 #' @importFrom rgeos gBuffer
-#' @importFrom sp spTransform CRS 
+#' @importFrom sp spTransform CRS
 #' @importFrom raster projection
 #' @export
 #' @examples 
@@ -26,6 +26,8 @@
 #' library(rgeos)
 #' library(dismo)
 #' library(raster)
+#' library(rgdal)
+#' library(dismo)
 #' 
 #' x <- structure(list(long = c(42.406612, 45.490354, 44.134308, 45.227887, 
 #' 63.572205, 62.41059, 63.732431, 59.034802, 52.167186, 58.909385, 
@@ -40,11 +42,10 @@
 #'                                                                                                                                                                                                                                                              8L, 16L, 17L, 23L, 24L, 25L, 26L, 27L, 30L, 31L, 32L))
 #' coordinates(x) <- ~ lat + long
 #' projection(x) <- "+init=epsg:4326"
-
-#' library(dismo)
+#'
 #' my.map <- gmap(extent(x), zoom = 4, scale = 2)
-#' plotCircleOnMap(coords = coords, multiply.r = c(100, 50), multiply.se = c(10, 20), 
-#'                 map = d.map, var = c("Ar", "Her"), lty = c("solid", "dashed"))
+#' plotCircleOnMap(coords = x, multiply.r = c(100, 50), multiply.se = c(10, 20), 
+#'                 map = my.map, var = c("Ar"), lty = c("solid", "dashed"))
 
 plotCircleOnMap <- function(coords, multiply.r = rep(1, length(var)), multiply.se = rep(1, length(var)), 
                             map, var, lty = rep("solid", length(var)), plot.se = FALSE) {
@@ -52,12 +53,13 @@ plotCircleOnMap <- function(coords, multiply.r = rep(1, length(var)), multiply.s
     x * 1609.344
   }
   
-  coords.mrc <- spTransform(coords, CRS = CRS(projection(map)))
+  coords.mrc <- spTransform(coords, CRSobj = CRS(projection(map)))
   names(var) <- var
   
   each.var.buff <- mapply(FUN = function(x, multiply.r) {
     coords.list <- vector("list", nrow(coords.mrc))
     for (i in seq_len(nrow(coords.mrc))) {
+      # browser()
       coords.list[i] <- gBuffer(coords.mrc[i, ], width = multiply.r * mile2meter(coords.mrc[i, ]@data[x]))
     }
     coords.list
