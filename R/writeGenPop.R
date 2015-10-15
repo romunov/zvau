@@ -34,10 +34,10 @@ writeGenPop <- function(gi, file.name, comment) {
 
     cat(paste(comment, "\n"), file = file.name)
     cat(paste(paste(locNames(gi), collapse = ", "), "\n"), file = file.name, append = TRUE)
-
     for (i in popNames(gi)) {
+      browser()
         cat("pop\n", file = file.name, append = TRUE)
-        intm <- gi[pop(gi) == i]
+        intm <- gi[pop(gi) == i, drop = FALSE]
         ind.names <- indNames(intm)
         intm <- genind2df(intm, sep = "")
         intm[is.na(intm)] <- paste(rep("0", lng), collapse = "")
