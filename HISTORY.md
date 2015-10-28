@@ -1,3 +1,6 @@
+### Version 0.22 (28.10.2015)
+Enhanced writeGenPop function. It now accepts lists. Each list element (genind object) is written as its own population.
+
 ### Version 0.21 (13.10.2015)
 Added function writeGenPop. This function differs from writeGenePop in that it uses strata/pop functionality of genind objects.
 

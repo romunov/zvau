@@ -7,7 +7,9 @@
 writeGenPop(gi, file.name, comment)
 }
 \arguments{
-\item{gi}{A \code{\link[adegenet]{genind}} object with defined strata and population. See \code{\link[adegenet]{setPop}}.}
+\item{gi}{A \code{\link[adegenet]{genind}} object with defined strata and population. See \code{\link[adegenet]{setPop}}. If
+a \code{list}, each list element will be written as a population. It is assumed that loci for all \code{genind} elements in
+a list are identical.}
 
 \item{file.name}{A character string defining file name. You will have to specify the extension as well.}
 

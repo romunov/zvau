@@ -5,7 +5,7 @@ The package currently contains the following functions:
 * `readClumpp` Read result of Clumpp into a `data.frame`
 * `writeStructure` Write a `genind` object to be analyzed using Structure
 * `writeGenePop` Write two `genind` objects to be analyzed using GENEPOP
-* `writeGenPop` Write a `genind` object to be analyzed using GENEPOP using `strat`/`pop` functionality
+* `writeGenPop` Write a `genind` object to be analyzed using GENEPOP using `strat`/`pop` functionality. It can also write a list of genind objects as populations.
 * `subsetGenData` Handle dropping levels in `other` slot
 * `writeINEST` Will write INEST file from a `genind` object
 * `drawLoci` Will draw alleles from a list of loci
