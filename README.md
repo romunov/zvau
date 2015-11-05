@@ -13,6 +13,8 @@ The package currently contains the following functions:
 * `findSeason` For a datum, find a season based on equinox/solstice.
 * `plotCircleOnMap` Will plot circles on a map based for a given variable and its SE.
 * `Mratio` Calculate Garza-Williamson M-ratio.
+* `genindSlidingWindow` will take a `genind` object and create a list of smaller `genind` objects, subsetted on dates
+based on a sliding window.
 
 ### Package installation
 #### The easy way via `devtools`

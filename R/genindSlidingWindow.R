@@ -1,0 +1,44 @@
+#' @title Create a list of genind objects based on a sliding window.
+#'
+#' Create a list of \code{genind} objects based on a sliding window of dates. Assumed step size is one year.
+#' The resulting list can be written to GENEPOP file using \code{writeGenPop} function.
+#'
+#' @param gi A \code{genind} object to be subsetted.
+#' @param start.year Integer. Starting year. See \code{win.size}.
+#' @param win.size Integer. One side of sliding window. If \code{start.year} is 1995 and \code{win.size} is
+#' 2, sliding window will encompass years 1993:1997.
+#' @param dates A vector of dates that correspond to individual genotype in \code{gi}. Often stored in \code{other(x)}.
+#' Dates will be coerced to integer years (\%Y).
+#' @return A list of \code{genind} objects.
+#'
+#' @author Roman Lustrik (roman.lustrik@@biolitika.si)
+#' @export
+
+genindSlidingWindow <- function(gi, start.year, win.size, dates) {
+  
+  dates <- as.integer(format(dates, "%Y"))
+  stopifnot(start.year >= min(dates))
+  
+  from <- start.year
+  to <- start.year + win.size
+  
+  out <- vector("list")
+  i <- 1
+  make.step <- TRUE
+  
+  while (make.step == TRUE) {
+    # If sliding window is outside the maximum time, abort.
+    if (max(dates) <= to) {
+      break
+    }
+    
+    out[[i]] <- gi[dates > from & dates < to, ]
+    # message(sprintf("Number of rows subsetted: %d", nInd(out[[i]])))
+    # move one year forward
+    from <- from + 1
+    to <- to + 1
+    i <- i + 1
+  }
+  
+  out
+}

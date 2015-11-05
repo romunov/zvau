@@ -1,3 +1,6 @@
+### Version 0.23 (5.11.2015)
+Added function `genindSlidingWindow`.
+
 ### Version 0.22 (28.10.2015)
 Enhanced writeGenPop function. It now accepts lists. Each list element (genind object) is written as its own population.
 Added function for calculating Garza-Williamson M-ratio.

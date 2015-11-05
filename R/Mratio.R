@@ -8,6 +8,7 @@
 #'
 #' @param x A \code{genind} object.
 #' @return A named vector of loci with M ratio.
+#' @importFrom adegenet alleles
 #' @export
 #' 
 #' @author Roman Lustrik (roman.lustrik@@biolitika.si)

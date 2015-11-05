@@ -6,7 +6,7 @@
 #' \code{\link{writeGenePop}}, relies on defined \code{strata} and is more general.
 #'
 #' @param gi A \code{\link[adegenet]{genind}} object with defined strata and population. See \code{\link[adegenet]{setPop}}. If
-#' a \code{list}, each list element will be written as a population. It is assumed that loci for all \code{genind} elements in 
+#' a \code{list}, each list element will be written as a population. It is assumed that loci for all \code{genind} elements in
 #' a list are identical.
 #' @param file.name A character string defining file name. You will have to specify the extension as well.
 #' @param comment A character string with a desired comment that will be prepended to the beginning of the file.
@@ -30,43 +30,47 @@
 #' file.remove("test.gen")
 
 writeGenPop <- function(gi, file.name, comment) {
-  
-  # calculate the length of a string to be able to specify number of zeros (as NA)
-  if (is.list(gi)) {
-    # do all genind objects have the same number of loci?
-    if (length(unique(sapply(gi, nLoc))) != 1) stop("Number of loci per individual genind object in a list is not equal for all.")
-    gi.char <- gi[[1]]
-    loc.names <- locNames(gi[[1]])
-  } else {
-    gi.char <- gi
-    loc.names <- locNames(gi)
-  }
-  lng <- unique(apply(na.omit(sapply(genind2df(gi.char)[, locNames(gi.char)], as.character))[, 1, drop = FALSE], MARGIN = 2, nchar))
-  
-  cat(paste(comment, "\n"), file = file.name)
-  cat(paste(paste(loc.names, collapse = ", "), "\n"), file = file.name, append = TRUE)
-  
-  if (is.list(gi)) {
-    pop.names <- seq_len(length(gi))
-  } else {
-    pop.names <- popNames(gi)
-  }
-  
-  for (i in pop.names) {
-    cat("pop\n", file = file.name, append = TRUE)
+
     if (is.list(gi)) {
-      intm <- gi[[i]]
-      loc.names <- locNames(gi[[i]])
+        # do all genind objects have the same number of loci?
+        if (length(unique(sapply(gi, nLoc))) != 1) stop("Number of loci per individual genind object in a list is not equal for all.")
+        gi.char <- gi[[1]]
+        loc.names <- locNames(gi[[1]])
     } else {
-      intm <- gi[pop(gi) == i, drop = FALSE]
+        gi.char <- gi
+        loc.names <- locNames(gi)
     }
-    ind.names <- indNames(intm)
-    intm <- genind2df(intm, sep = "")
-    intm[is.na(intm)] <- paste(rep("0", lng), collapse = "")
-    out <- cbind(names = paste(ind.names, ",", sep = ""), intm[, loc.names])
-    write.table(out, file = file.name, row.names = FALSE, col.names = FALSE, append = TRUE, quote = FALSE)
-  }
-  
-  return(NULL)
+
+    # Calculate the length of two alleles.
+    lng <- as.character(na.omit(genind2df(gi.char)[, locNames(gi.char)[1]]))
+    lng <- unique(nchar(lng))
+
+    stopifnot(length(lng) == 1)
+
+    cat(paste(comment, "\n"), file = file.name)
+    cat(paste(paste(loc.names, collapse = ", "), "\n"), file = file.name, append = TRUE)
+
+    if (is.list(gi)) {
+        pop.names <- seq_len(length(gi))
+    } else {
+        pop.names <- popNames(gi)
+    }
+
+    for (i in pop.names) {
+        cat("pop\n", file = file.name, append = TRUE)
+        if (is.list(gi)) {
+            intm <- gi[[i]]
+            loc.names <- locNames(gi[[i]])
+        } else {
+            intm <- gi[pop(gi) == i, drop = FALSE]
+        }
+        ind.names <- indNames(intm)
+        intm <- genind2df(intm, sep = "")
+        intm[is.na(intm)] <- paste(rep("0", lng), collapse = "")
+        out <- cbind(names = paste(ind.names, ",", sep = ""), intm[, loc.names])
+        write.table(out, file = file.name, row.names = FALSE, col.names = FALSE, append = TRUE, quote = FALSE)
+    }
+
+    return(NULL)
 }
 
