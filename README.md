@@ -16,6 +16,7 @@ The package currently contains the following functions:
 * `genindSlidingWindow` will take a `genind` object and create a list of smaller `genind` objects, subsetted on dates
 based on a sliding window.
 * `writeCoancestry` Will write a file accepted by [Coancestry](http://www.zsl.org/science/software/coancestry) software.
+* `goSlide` A function in support of `genindSlidingWindow` to visualize years of cohorts (sliding windows).
 
 ### Package installation
 #### The easy way via `devtools`

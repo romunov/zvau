@@ -1,5 +1,5 @@
 ### Version 0.24 (6.11.2015)
-Added function `writeCoancestry`.
+Added function `writeCoancestry` and `goSlide`.
 
 ### Version 0.23 (5.11.2015)
 Added function `genindSlidingWindow`.
