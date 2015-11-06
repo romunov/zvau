@@ -1,3 +1,6 @@
+### Version 0.24 (6.11.2015)
+Added function `writeCoancestry`.
+
 ### Version 0.23 (5.11.2015)
 Added function `genindSlidingWindow`.
 
