@@ -4,19 +4,25 @@
 \alias{writeCoancestry}
 \title{Function will write \code{genind} object to Coancestry file format.}
 \usage{
-writeCoancestry(gi, file)
+writeCoancestry(gi, file, pop.inside = NULL)
 }
 \arguments{
 \item{gi}{A \code{genind} object to be written to a file.}
 
 \item{file}{Character. A file name of the created file.}
+
+\item{pop.inside}{Factor. If NULL (default), \code{pop(x)} is used to find population. If user wishes
+to use a different population designation, he or she should provide a factor.}
 }
 \value{
-A file is written to disk. Rows (individuals) are sorted according to the population quietly.
+A file is written to disk. Result will be quietly sorted according to the population.
 }
 \description{
 Using \code{genind} object, function will try hard to format and write the data
 so that it will be accepted by Coancestry program (http://www.zsl.org/science/software/coancestry).
+Function can write a list of \code{genind} objects, in which case, each list element will be
+considered a population. In that case, user should provide a vector (factor) designating individual
+affiliation.
 }
 \author{
 Roman Lustrik (\email{roman.lustrik@biolitika.si})
