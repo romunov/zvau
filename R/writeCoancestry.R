@@ -44,7 +44,7 @@ writeCoancestry <- function(gi, file, pop.inside = NULL) {
     ind.names <- do.call("c", sapply(gi, indNames, simplify = FALSE))
 
     # If there is no population designation, assume only one population.
-    if (length(gi) == 1) {
+    if (length(gi) == 1 & is.null(pop.inside)) {
         gi.pop <- sapply(gi[1], pop, simplify = FALSE)[[1]]
     } else {
         gi.pop <- pop.inside
