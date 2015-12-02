@@ -1,5 +1,5 @@
 ### Version 0.25 (2.12.2015)
-Fixed bug in window size
+Fixed bug in window size, genindSlidingWindow now also prints cohort dates. Printing can be disabled through argument `verbose`.
 
 ### Version 0.24 (6.11.2015)
 Added function `writeCoancestry` and `goSlide`.
