@@ -1,3 +1,6 @@
+### Version 0.25 (2.12.2015)
+Fixed bug in window size
+
 ### Version 0.24 (6.11.2015)
 Added function `writeCoancestry` and `goSlide`.
 
