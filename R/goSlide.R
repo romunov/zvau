@@ -18,7 +18,7 @@
 #' goSlide(start = 1996, win.size = 4, cohorts = 14)
 goSlide <- function(start, win.size, cohorts) {
   for(i in 1:cohorts) {
-    message(paste("Cohort:", i, paste(rep(" ", i-1), collapse = ""), start, start+win.size))
+    message(paste("Cohort:", i, paste(rep(" ", i-1), collapse = ""), start, start + (win.size +1 )))
     start <- start + 1
   }
 }
