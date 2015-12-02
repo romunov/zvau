@@ -20,7 +20,7 @@ genindSlidingWindow <- function(gi, start.year, win.size, dates) {
   stopifnot(start.year >= min(dates))
   
   from <- start.year
-  to <- start.year + win.size
+  to <- start.year + (win.size - 1)
   
   out <- vector("list")
   i <- 1
