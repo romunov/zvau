@@ -27,8 +27,6 @@ writeStructure <- function(x, file, ...) {
     pop <- as.numeric(pop(x))
   }
 
-  browser()
-
   output <- cbind(id = row.names(gen), pop = pop, gen)
   write.table(output, file, sep = " ", row.names = FALSE)
 
