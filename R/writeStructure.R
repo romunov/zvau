@@ -28,7 +28,7 @@ writeStructure <- function(x, file, ...) {
   }
 
   output <- cbind(id = row.names(gen), pop = pop, gen)
-  write.table(output, file, sep = " ", row.names = FALSE)
+  write.table(output, file, sep = " ", row.names = FALSE, quote = FALSE)
 
   if (!is.null(pop(x))) {
     out <- data.frame(id = 1:length(unique(pop)), Pop = unique(pop(x)))
