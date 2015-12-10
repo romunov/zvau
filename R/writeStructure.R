@@ -6,7 +6,6 @@
 #'
 #' @param x genind A \code{genind} object to be exported.
 #' @param file Character A character vector of relative or absolute path of the resulting file.
-#' @param ... Arguments passed to \code{write.table}.
 #'
 #' @importFrom adegenet genind2df
 #' @export
@@ -15,7 +14,7 @@
 #' a population legend if population is designated. Otherwise returns a message notifying
 #' the user legend is not applicable.
 
-writeStructure <- function(x, file, ...) {
+writeStructure <- function(x, file) {
   # Explicitly remove population.
   gen <- genind2df(x, sep = " ", usepop = FALSE)
   gen[is.na(gen)] <- "-9 -9"

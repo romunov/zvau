@@ -7,7 +7,7 @@
 Create a list of \code{genind} objects based on a sliding window of dates. Assumed step size is one year.
 The resulting list can be written to GENEPOP file using \code{writeGenPop} function.}
 \usage{
-genindSlidingWindow(gi, start.year, win.size, dates)
+genindSlidingWindow(gi, start.year, win.size, dates, verbose = TRUE)
 }
 \arguments{
 \item{gi}{A \code{genind} object to be subsetted.}
@@ -19,6 +19,8 @@ genindSlidingWindow(gi, start.year, win.size, dates)
 
 \item{dates}{A vector of dates that correspond to individual genotype in \code{gi}. Often stored in \code{other(x)}.
 Dates will be coerced to integer years (\%Y).}
+
+\item{verbose}{Boolean. If TRUE, a message will be printed about cohort span. Can be silenced by setting this to FALSE.}
 }
 \value{
 A list of \code{genind} objects.
