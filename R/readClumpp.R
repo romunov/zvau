@@ -24,9 +24,21 @@
 
 readClumpp <- function(x) {
   x <- readLines(x)
-  x <- do.call("rbind", strsplit(unlist(lapply(strsplit(x, ":  "), "[[", 2)), " "))
-  x <- as.data.frame(apply(x, MARGIN = 2, as.numeric))
-  names(x) <- paste("q", 1:ncol(x), sep = "")
-  x
+
+  # extract individuals
+  ind <- sapply(unname(sapply(x, function(x) strsplit(x = x, split = "\\("))), "[[", 1)
+  ind <- strsplit(trimws(ind), "  ")
+  ind <- sapply(ind, "[[", 1)
+  
+  # extract population
+  # http://stackoverflow.com/questions/28267400/extract-a-string-of-words-between-two-specific-words-in-r
+  pop <- sub(".*) *(.*?) *:.*", "\\1", x)
+  
+  # extract assignment values
+  pis <- do.call("rbind", strsplit(unlist(lapply(strsplit(x, ":  "), "[[", 2)), " "))
+  pis <- as.data.frame(apply(pis, MARGIN = 2, as.numeric))
+  names(pis) <- paste("q", 1:ncol(pis), sep = "")
+  
+  cbind(ind, pop, pis)
 }
 
