@@ -1,8 +1,8 @@
 Package: zvau
 Type: Package
 Title: Misc functions used by our ecology lab
-Version: 0.25
-Date: 2015-11-05
+Version: 0.26
+Date: 2015-12-11
 Author: Roman Lustrik, Tomaz Skrbinsek
 Maintainer: Roman Lustrik <roman.lustrik@biolitika.si>
 Description: Several functions used in our daily routine.

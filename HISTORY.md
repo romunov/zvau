@@ -1,3 +1,6 @@
+### Version 0.25 (11.12.2015)
+Expanded the functionality of `readClumpp` function to read consecutive individual number and population designation.
+
 ### Version 0.25 (2.12.2015)
 Fixed bug in window size, genindSlidingWindow now also prints cohort dates. Printing can be disabled through argument `verbose`.
 
