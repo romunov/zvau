@@ -1,8 +1,8 @@
 Package: zvau
 Type: Package
 Title: Misc functions used by our ecology lab
-Version: 0.26
-Date: 2015-12-11
+Version: 0.27
+Date: 2016-03-04
 Author: Roman Lustrik, Tomaz Skrbinsek
 Maintainer: Roman Lustrik <roman.lustrik@biolitika.si>
 Description: Several functions used in our daily routine.
@@ -16,8 +16,9 @@ Imports:
     rgeos,
     dismo,
     raster
-Suggests: 
+Suggests:
     rgdal
 License: GPL-2
 Encoding: UTF-8
 LazyData: FALSE
+RoxygenNote: 5.0.1

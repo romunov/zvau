@@ -1,3 +1,6 @@
+### Version 0.27 (4.3.2016)
+Added function `readColony` which extracts data from a Colony project.
+
 ### Version 0.25 (11.12.2015)
 Expanded the functionality of `readClumpp` function to read consecutive individual number and population designation.
 

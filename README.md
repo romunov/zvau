@@ -17,6 +17,7 @@ The package currently contains the following functions:
 based on a sliding window.
 * `writeCoancestry` Will write a file accepted by [Coancestry](http://www.zsl.org/science/software/coancestry) software.
 * `goSlide` A function in support of `genindSlidingWindow` to visualize years of cohorts (sliding windows).
+* `readColony` Extract results from a Colony project. Useful for comparing matched genotypes from LC or LR runs.
 
 ### Package installation
 #### The easy way via `devtools`
