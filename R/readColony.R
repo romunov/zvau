@@ -7,12 +7,12 @@
 #' @param comp Character. Result from colony. See Details.
 #' 
 #' @section Details:
-#' \begin{itemize}
+#' \itemize{
 #' \item \code{"LC"} will extract result from \code{*.BestClone}.
 #' \item \code{"LR"} (not implemented yet) will extract results from \code{*.PairwiseCloneDyad}. 
 #' This will be empty if relatedness wasn't calculated.
 #' \item \code{offspring_genotype} will extract genotype of offspring from \code{OffspringGenotype.txt} of the project.
-#' \end{itemize}
+#' }
 #' 
 #' @author Roman Lustrik (\email{roman.lustrik@@biolitika.si})
 #' @export
