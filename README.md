@@ -18,6 +18,8 @@ based on a sliding window.
 * `writeCoancestry` Will write a file accepted by [Coancestry](http://www.zsl.org/science/software/coancestry) software.
 * `goSlide` A function in support of `genindSlidingWindow` to visualize years of cohorts (sliding windows).
 * `readColony` Extract results from a Colony project. Useful for comparing matched genotypes from LC or LR runs.
+* `makeNGSfilter` Based on a PCR plate template with tag-primer combination, name wells according to a layout
+file and account for the desired number of replicates.
 
 ### Package installation
 #### The easy way via `devtools`

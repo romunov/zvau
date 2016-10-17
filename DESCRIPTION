@@ -17,8 +17,10 @@ Imports:
     dismo,
     raster
 Suggests:
-    rgdal
+    rgdal,
+    tidyr,
+    readxl
 License: GPL-2
 Encoding: UTF-8
-LazyData: FALSE
+LazyData: TRUE
 RoxygenNote: 5.0.1
