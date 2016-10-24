@@ -1,30 +1,33 @@
+#!/usr/bin/env Rscript
 # Read arguments passed to the script
-args <- commandArgs(trailingOnly = TRUE)
 
-# Display help
-if (any(args %in% "--help")) {
-  cat("
-      --help You are here.
+library(optparse)
+option_list <- list(
+  # make_option(c("-h", "--help"), help = "You are here.", default = FALSE),
+  make_option(c("-i", "--input"), type = "character", 
+              help = "A file (path) to the source file of genotypes, e.g. 'dataset.csv' or 
+                     './data/dataset.csv' if nested in /data/ relative to the working di-
+                     rectory (where script is ran from). File should have a comma as del-
+                     imiters and tab separating columns. It should have sample name and 
+                     quality index columns, along with loci names."),
+  make_option(c("-a", "--alleleMismatch"), default = "integer", help = 
+                "Integer. Number of mismatched alleles (m-hat). Related to matchThreshold 
+                 and cutHeight."),
+  make_option(c("-m", "--matchThreshold"), type = "double", help = 
+                "Double. Dissimilarity score which constitutes a match when identifying 
+                individuals (s-hat)."),
+  make_option(c("-c", "--cutHeight"), type = "double", 
+              help = "Double. Used for dynamic cutting of the tree by amCluster."),
+  make_option(c("-o", "--output"), type = "character", default = "default_output.csv",
+              help = "Character. The way results will be output. Can be 'html' or 'csv'."),
+  make_option(c("-p", "--profile"), type = "logical",
+              help = "Logical. Can be TRUE or FALSE. Profiling is done only if requested. 
+                      Results in a figures stored locally.", action = "store_true"),
+  make_option(c("-f", "--fig"), type = "character", default = "profile_result.png",
+              help = "Name of the resulting figure.")
+)
 
-      --input A file (path) to the source file of genotypes, e.g. 'dataset.csv' or './data/dataset.csv' if nested
-              in /data/ relative to the working directory (where script is ran from). File should have a comma as
-              delimiters and tab separating columns. It should have sample name and quality index columns, along 
-              with loci names.
-
-      --alleleMismatch Integer. Number of mismatched alleles (m-hat). Related to matchThreshold and cutHeight.
-
-      --matchThreshold Float. Dissimilarity score which constitutes a match when identifying individuals (s-hat).
-
-      --cutHeight Float. Used for dynamic cutting of the tree by amCluster.
-
-      --output Character. The way results will be output. Can be 'html' or 'csv'.
-
-      --profile Logical. Can be TRUE or FALSE. Profiling is done only if requested. Results in a figures stored
-                locally.
-      --fig Character. Filename of the produced figures. Currently only .png supported.
-      ")
-  return("")
-}
+opt <- parse_args(OptionParser(option_list=option_list))
 
 # Load packages
 library(allelematch)
@@ -110,7 +113,7 @@ if (do.profile) {
                      alleleMismatch = cmd.amm, 
                      matchThreshold = cmd.mth,
                      cutHeight = cmd.cht
-                     )
+  )
   
   # Produce result as specified in output
   # Catch csv, if not, assume html is requested
