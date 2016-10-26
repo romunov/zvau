@@ -41,11 +41,14 @@ if (is.null(opt$input)) {
 # Import data (can be csv, even SQL statement)
 # Implementing reading from a csv with decimal delimiter and tab as separator. 
 message("Importing dataset...")
-xy <- read.table(input, header = TRUE, dec = ",", sep = "\t")
+xy <- read.table(input, header = TRUE, sep = ";")
+
+xy <- reshape(xy, timevar = "marker", idvar = "sample", direction = "wide")
+names(xy) <- gsub("measured\\.", replacement = "", x = names(xy))
 
 # Convert the imported dataset into a proper structure for matching
 message("Creating dataset for further processing...")
-d.xy <- amDataset(xy, missingCode = NA, indexColumn = "Samp", metaDataColumn = "QualityIndex") # TODO: add metadata columns
+d.xy <- amDataset(xy, missingCode = NA, indexColumn = "sample") # TODO: add metadata columns
 
 # Do profiling. Figure is saved to working directory.
 if (opt$profile) {
