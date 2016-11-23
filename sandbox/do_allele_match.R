@@ -83,7 +83,19 @@ if (opt$profile) {
   # Catch csv, if not, assume html is requested
   message("Writing output...")
   if (grepl("\\.csv$", opt$output)) {
+    suppressMessages(require(tidyr))
     amCSV.amUnique(x = result, csvFile = opt$output)
+    
+    # Reread the data and reflow it into a long format, subset only 
+    # relevant columns and resave it
+    rein <- read.table(opt$output, header = TRUE, sep = ",")
+    rein <- gather(rein, key = markerName, value = value, -uniqueGroup, -rowType, -uniqueIndex,
+                   -matchIndex, -nUniqueGroup, -alleleMismatch, -matchThreshold, -cutHeight,
+                   -Psib, -score)[, c("uniqueGroup", "rowType", "uniqueIndex", "matchIndex", "Psib",
+                                      "markerName", "value")]
+    write.table(rein, file = opt$output, quote = FALSE, sep = ",",
+                col.names = TRUE, row.names = FALSE)
+    
   } else {
     amHTML.amUnique(x = result, htmlFile = opt$output)
   }
