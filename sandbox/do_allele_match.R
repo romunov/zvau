@@ -1,4 +1,9 @@
 #!/usr/bin/env Rscript
+
+# This script will perform matching of genotypes where user can control matching parameters.
+# It is also possible to run profiling to determine best parameters. Output can be an image.
+# Result is controlled through parameters and can be HTML or CSV.
+# Verbose logging is done to a file, controlled by a parameter (see --help for more info).
 # Read arguments passed to the script
 
 library(optparse)
@@ -23,7 +28,9 @@ option_list <- list(
               action = "store_true",
               help = "If specified, profiling will be performed (but not matching)."),
   make_option(c("-f", "--fig"), type = "character", default = "profile_result.png",
-              help = "Name of the resulting figure.")
+              help = "Name of the resulting figure."),
+  make_option(c("-v", "--verbose"), type = "character", default = "debugging.txt",
+              help = "Name of file into where verbose debugging text is parsed.")
 )
 
 opt <- parse_args(OptionParser(option_list = option_list))
@@ -41,22 +48,31 @@ if (is.null(opt$input)) {
 # Import data (can be csv, even SQL statement)
 # Implementing reading from a csv with decimal delimiter and tab as separator. 
 message("Importing dataset...")
+cat("Importing dataset.", file = opt$verbose) # create a new debugging file, overwrite any previous
 xy <- read.table(input, header = TRUE, sep = ";")
+cat("Successfully imported dataset.", file = opt$verbose)
 
+cat("Reshaping data.", file = opt$verbose)
 xy <- reshape(xy, timevar = "marker", idvar = "sample", direction = "wide")
 names(xy) <- gsub("measured\\.", replacement = "", x = names(xy))
+cat("Done reshaping data.", file = opt$verbose)
 
 # Convert the imported dataset into a proper structure for matching
 message("Creating dataset for further processing...")
+cat("Preparing dataset for analysis.", file = opt$verbose)
 d.xy <- amDataset(xy, missingCode = NA, indexColumn = "sample") # TODO: add metadata columns
+cat("Dataset ready for analysis.", file = opt$verbose)
 
 # Do profiling. Figure is saved to working directory.
 if (opt$profile) {
   message("Profiling... This may take a while.")
+  cat("Performing profiling.", file = opt$verbose)
   
   png(filename = opt$fig,  width = 500, height = 500) # output figure size, adapt if needed
   prof <- amUniqueProfile(amDatasetFocal = d.xy, verbose = TRUE)
   dev.off()
+
+  cat("Done performing profiling, figure saved.", file = opt$verbose)
   
   message("Figure saved.")
 } else {
@@ -72,6 +88,8 @@ if (opt$profile) {
     stop("Please specify at least one parameter (alleleMismatch, matchThreshold or cutHeight), see --help.")
   }
   
+  cat("Performing matching.", file = opt$verbose)
+  
   message("Performing matching...")
   result <- amUnique(amDatasetFocal = d.xy, 
                      alleleMismatch = opt$alleleMismatch, 
@@ -79,11 +97,17 @@ if (opt$profile) {
                      cutHeight = opt$cutHeight
   )
   
+  cat("Matching done.", file = opt$verbose)
+  
   # Produce result as specified in output
   # Catch csv, if not, assume html is requested
   message("Writing output...")
+  
   if (grepl("\\.csv$", opt$output)) {
     suppressMessages(require(tidyr))
+
+    cat("Writing result to CSV.", file = opt$verbose)
+    
     amCSV.amUnique(x = result, csvFile = opt$output)
     
     # Reread the data and reflow it into a long format, subset only 
@@ -96,7 +120,10 @@ if (opt$profile) {
     write.table(rein, file = opt$output, quote = FALSE, sep = ",",
                 col.names = TRUE, row.names = FALSE)
     
+    cat("Done writing CSV file.")
   } else {
+    cat("Writing data to HTML.", file = opt$verbose)
     amHTML.amUnique(x = result, htmlFile = opt$output)
+    cat("Done writing data to HTML.", file = opt$verbose)
   }
 }
