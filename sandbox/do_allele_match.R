@@ -48,32 +48,49 @@ if (is.null(opt$input)) {
 # Import data (can be csv, even SQL statement)
 # Implementing reading from a csv with decimal delimiter and tab as separator. 
 message("Importing dataset...")
-cat("Importing dataset.", file = opt$verbose) # create a new debugging file, overwrite any previous
+cat("Importing dataset.\n", file = opt$verbose) # create a new debugging file, overwrite any previous
 xy <- read.table(input, header = TRUE, sep = ";")
-cat("Successfully imported dataset.", file = opt$verbose)
+cat("[OK] Successfully imported dataset.\n", file = opt$verbose, append = TRUE)
 
-cat("Reshaping data.", file = opt$verbose)
+cat("Reshaping data.\n", file = opt$verbose, append = TRUE)
 xy <- reshape(xy, timevar = "marker", idvar = "sample", direction = "wide")
 names(xy) <- gsub("measured\\.", replacement = "", x = names(xy))
-cat("Done reshaping data.", file = opt$verbose)
+cat("[OK] Done reshaping data.\n", file = opt$verbose, append = TRUE)
 
 # Convert the imported dataset into a proper structure for matching
 message("Creating dataset for further processing...")
-cat("Preparing dataset for analysis.", file = opt$verbose)
-d.xy <- amDataset(xy, missingCode = NA, indexColumn = "sample") # TODO: add metadata columns
-cat("Dataset ready for analysis.", file = opt$verbose)
+cat("Preparing dataset for analysis.\n", file = opt$verbose, append = TRUE)
+d.xy <- amDataset(xy, missingCode = NA, indexColumn = "sample")
+cat("[OK] Dataset ready for analysis.\n", file = opt$verbose, append = TRUE)
 
 # Do profiling. Figure is saved to working directory.
 if (opt$profile) {
   message("Profiling... This may take a while.")
-  cat("Performing profiling.", file = opt$verbose)
+  cat("Performing profiling.\n", file = opt$verbose, append = TRUE)
   
   png(filename = opt$fig,  width = 500, height = 500) # output figure size, adapt if needed
-  prof <- amUniqueProfile(amDatasetFocal = d.xy, verbose = TRUE)
-  dev.off()
-
-  cat("Done performing profiling, figure saved.", file = opt$verbose)
+  prof <- tryCatch(amUniqueProfile(amDatasetFocal = d.xy, verbose = TRUE),
+                   error = function(e) e,
+                   warning = function(w) w)
   
+  prof.ok <- any(class(prof) %in% c("error", "warning"))
+  
+  if (prof.ok) {
+    plot.new()
+    plot.window(xlim = c(-10, 10), ylim = c(-5, 5))
+    text(x = 0, y = 1, cex = 2, labels = "Profiling failed with error message:")
+    text(x = 0, y = 0, cex = 2, labels = prof$message)
+    
+    cat("[STOP] Profiling took a turn for the worse.\n", file = opt$verbose, append = TRUE)
+  }
+  
+  dev.off()
+  
+  if (prof.ok) {
+    return(sprintf("[STOP] Profiling failed, please see error log in %s.", opt$verbose))
+  }
+  
+  cat("[OK] Done performing profiling, figure saved.\n", file = opt$verbose, append = TRUE)
   message("Figure saved.")
 } else {
   mp <- c("alleleMismatch", "matchThreshold", "cutHeight")
@@ -88,16 +105,23 @@ if (opt$profile) {
     stop("Please specify at least one parameter (alleleMismatch, matchThreshold or cutHeight), see --help.")
   }
   
-  cat("Performing matching.", file = opt$verbose)
-  
+  cat("Performing matching.\n", file = opt$verbose, append = TRUE)
   message("Performing matching...")
-  result <- amUnique(amDatasetFocal = d.xy, 
+  
+  result <- tryCatch(amUnique(amDatasetFocal = d.xy, 
                      alleleMismatch = opt$alleleMismatch, 
                      matchThreshold = opt$matchThreshold,
-                     cutHeight = opt$cutHeight
-  )
+                     cutHeight = opt$cutHeight),
+                     error = function(e) e,
+                     warning = function(w) w)
   
-  cat("Matching done.", file = opt$verbose)
+  match.ok <- any(class(result) %in% c("error", "warning"))
+  
+  if (match.ok) {
+    
+  }
+  
+  cat("[OK] Matching done.\n", file = opt$verbose, append = TRUE)
   
   # Produce result as specified in output
   # Catch csv, if not, assume html is requested
@@ -105,8 +129,8 @@ if (opt$profile) {
   
   if (grepl("\\.csv$", opt$output)) {
     suppressMessages(require(tidyr))
-
-    cat("Writing result to CSV.", file = opt$verbose)
+    
+    cat("Writing result to CSV.\n", file = opt$verbose, append = TRUE)
     
     amCSV.amUnique(x = result, csvFile = opt$output)
     
@@ -120,10 +144,10 @@ if (opt$profile) {
     write.table(rein, file = opt$output, quote = FALSE, sep = ",",
                 col.names = TRUE, row.names = FALSE)
     
-    cat("Done writing CSV file.")
+    cat("[OK] Done writing CSV file.\n", file = opt$verbose, append = TRUE)
   } else {
-    cat("Writing data to HTML.", file = opt$verbose)
+    cat("Writing data to HTML.\n", file = opt$verbose, append = TRUE)
     amHTML.amUnique(x = result, htmlFile = opt$output)
-    cat("Done writing data to HTML.", file = opt$verbose)
+    cat("[OK] Done writing data to HTML.\n", file = opt$verbose, append = TRUE)
   }
 }
