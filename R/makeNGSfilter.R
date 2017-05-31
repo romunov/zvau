@@ -48,14 +48,13 @@
 
 makeNGSfilter <- function(sheet, template, experiment, num.replicates, 
                           sample.prefix = "sample", filename) {
-  # browser()
   # Prepare the template
   tx <- read.table(template, colClasses = "character")
   
   # Find first sequence of loci. It assumes they are always in the same sequence.
   num.loci <- length(unique(tx[, 1]))
   
-  loci <- gsub("^(.*?)_([[:digit:]]+)_([[:alnum:]]+$)", "\\2", tx[, 1])
+  loci <- gsub("^(.*?)_(\\w+)_([[:alnum:]]{2}$)", "\\3", tx[, 1])
   
   # Find the number of samples.
   samples <- gsub("^(.*?)_([[:digit:]]+)_([[:alnum:]]+$)", "\\2", tx[, 2])
@@ -72,6 +71,7 @@ makeNGSfilter <- function(sheet, template, experiment, num.replicates,
     
     # remove the firts column, which is row name (A:H)
     xy <- xy[, -1]
+    xy <- xy[, 1:12]
     
   } else {
     xy <- sheet
@@ -94,7 +94,7 @@ makeNGSfilter <- function(sheet, template, experiment, num.replicates,
   tx[, 1] <- onerun.experiment
   
   # Create sample name (2nd) column
-  tx[, 2] <- paste(xy, tx[, 2], sep = "_")
+  tx[, 2] <- paste(xy, rep(samples, each = num.loci), sep = "_")
   # Replicate the template appropriate number of times
   ntemplate <- do.call(rbind, replicate(num.replicates, tx, simplify = FALSE))
   
