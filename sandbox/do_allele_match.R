@@ -153,3 +153,11 @@ if (opt$profile) {
     cat("[OK] Done writing data to HTML.\n", file = opt$verbose, append = TRUE)
   }
 }
+
+cat("\n", file = opt$verbose, append = TRUE)
+cat("Analysis performed using the following tools (https://github.com/romunov/zvau) \n\n",
+    file = opt$verbose, append = TRUE)
+sink(file = opt$verbose, append = TRUE, type = "output")
+
+sessionInfo()
+sink()
