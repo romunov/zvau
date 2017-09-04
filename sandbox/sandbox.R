@@ -1,7 +1,11 @@
 devtools::load_all(".")
+roxygen2::roxygenize()
 
-makeNGSfilter(sheet = "../NGS_R_python_scripts/gatc_trial/DNA_plate_SLO_FR bear.xlsx", 
-              template = "../NGS_R_python_scripts/gatc_trial/rawdata_gatc_medvedi.ngsfilter",
-              experiment = "UA_GATC",
-              num.replicates = 1,
-              filename = "../NGS_R_python_scripts/gatc_trial/test.ngsfilter")
+xy <- read.table("./sandbox/gis_data_sim.csv", sep = ";", header = TRUE)
+xy$id <- as.numeric(xy$sample)
+head(xy)
+write.table(xy, file = "./sandbox/test_genotipi_id.csv", sep = ";", col.names = TRUE,
+            row.names = FALSE, quote = FALSE)
+
+# Rscript do_allele_match.R --profile --input=gis_demo_gene.csv --fig=mojaslika.png
+# Rscript do_allele_match.R --input=test_genotipi_id.csv --output=testout.csv --alleleMismatch=3
