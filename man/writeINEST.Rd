@@ -26,4 +26,3 @@ unlink("inest_test.txt")
 \author{
 Roman Lustrik (\email{roman.lustrik@biolitika.si})
 }
-

@@ -22,4 +22,3 @@ Function will convert a genind file and population designation to a text file.
 \author{
 Tomaz Skrbinsek (\email{tomaz.skrbinsek@gmail.com}) and Roman Lustrik (\email{roman.lustrik@biolitika.si})
 }
-

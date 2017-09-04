@@ -34,4 +34,3 @@ software \code{coancestry} (Jinliang Wang).
 \author{
 Roman Lustrik, Maja Jelencic
 }
-

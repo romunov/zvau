@@ -42,4 +42,3 @@ file.remove("test.gen")
 \author{
 Roman Lustrik (\email{roman.lustrik@biolitika.si})
 }
-

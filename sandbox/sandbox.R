@@ -1,9 +1,7 @@
-#### draw alleles from loci list ####
-load("./sandbox/MonkSealAllelesOLD.RData")
+devtools::load_all(".")
 
-titi <- lapply(titi, FUN = function(x) {
-  x[!grepl(pattern = "009|819", x = x)]
-})
-m <- drawLoci(x = titi)
-ggsave("./sandbox/allele_loc_list.pdf", width = 10, height = 5)
-
+makeNGSfilter(sheet = "../NGS_R_python_scripts/gatc_trial/DNA_plate_SLO_FR bear.xlsx", 
+              template = "../NGS_R_python_scripts/gatc_trial/rawdata_gatc_medvedi.ngsfilter",
+              experiment = "UA_GATC",
+              num.replicates = 1,
+              filename = "../NGS_R_python_scripts/gatc_trial/test.ngsfilter")

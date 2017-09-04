@@ -1,3 +1,6 @@
+### Version 0.28 (4.9.2017)
+Removed `makeNGSfilter` because it was causing problems.
+
 ### Version 0.27 (4.3.2016)
 Added function `readColony` which extracts data from a Colony project.
 

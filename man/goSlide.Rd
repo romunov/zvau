@@ -27,4 +27,3 @@ goSlide(start = 1996, win.size = 4, cohorts = 14)
 \author{
 Roman Lustrik (\email{roman.lustrik@biolitika.si})
 }
-

@@ -61,4 +61,3 @@ plotCircleOnMap(coords = x, multiply.r = c(100, 50), multiply.se = c(10, 20),
 \author{
 Roman Lustrik (roman.lustrik@biolitika.si)
 }
-

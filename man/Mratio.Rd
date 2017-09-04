@@ -28,4 +28,3 @@ Mratio(nancycats)
 \author{
 Roman Lustrik (roman.lustrik@biolitika.si)
 }
-

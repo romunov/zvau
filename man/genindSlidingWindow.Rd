@@ -28,4 +28,3 @@ A list of \code{genind} objects.
 \author{
 Roman Lustrik (roman.lustrik@biolitika.si)
 }
-

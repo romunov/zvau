@@ -34,4 +34,3 @@ fig.plotted <- drawLoci(al)
 \author{
 Roman Lustrik (\email{roman.lustrik@biolitika.si})
 }
-

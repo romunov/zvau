@@ -2,8 +2,8 @@
 % Please edit documentation in R/zvau-package.R
 \docType{package}
 \name{zvau-package}
-\alias{zvau}
 \alias{zvau-package}
+\alias{zvau}
 \title{Misc functions used by out group}
 \description{
 Package contains functions used in daily work by our group for ecology at
@@ -34,4 +34,3 @@ Maintainer: Roman Lustrik (\email{roman.lustrik@biolitika.si})
 }
 \keyword{datasets}
 \keyword{package}
-

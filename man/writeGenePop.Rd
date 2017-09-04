@@ -24,4 +24,3 @@ Function promises to write two genind objects to a text file.
 \author{
 Tomaz Skrbinsekek (\email{tomaz.skrbinsek@gmail.com})
 }
-

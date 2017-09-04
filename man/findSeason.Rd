@@ -20,4 +20,3 @@ Function is based on Josh O'Brien's answer from StackOverflow
 \examples{
 findSeason(as.Date("21.6.2015", format = "\%d.\%m.\%Y"))
 }
-

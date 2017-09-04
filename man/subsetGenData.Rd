@@ -16,4 +16,3 @@ functions drops levels by reconstructing the object from scratch.
 \author{
 Roman Lustrik (roman.lustrik@biolitika.si)
 }
-

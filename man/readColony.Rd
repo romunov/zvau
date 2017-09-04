@@ -24,7 +24,7 @@ This will be empty if relatedness wasn't calculated.
 \item \code{offspring_genotype} will extract genotype of offspring from \code{OffspringGenotype.txt} of the project.
 }
 }
+
 \author{
 Roman Lustrik (\email{roman.lustrik@biolitika.si})
 }
-

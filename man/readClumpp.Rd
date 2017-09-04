@@ -31,4 +31,3 @@ unlink("temp.clumpp.txt")
 \author{
 Roman Lustrik {roman.lustrik@biolitika.si}
 }
-
