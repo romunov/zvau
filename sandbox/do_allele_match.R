@@ -53,14 +53,14 @@ xy <- read.table(input, header = TRUE, sep = ";")
 cat("[OK] Successfully imported dataset.\n", file = opt$verbose, append = TRUE)
 
 cat("Reshaping data.\n", file = opt$verbose, append = TRUE)
-xy <- reshape(xy, timevar = "marker", idvar = "sample", direction = "wide")
+xy <- reshape(xy, timevar = "marker", idvar = c("sample", "id"), direction = "wide")
 names(xy) <- gsub("measured\\.", replacement = "", x = names(xy))
 cat("[OK] Done reshaping data.\n", file = opt$verbose, append = TRUE)
 
 # Convert the imported dataset into a proper structure for matching
 message("Creating dataset for further processing...")
 cat("Preparing dataset for analysis.\n", file = opt$verbose, append = TRUE)
-d.xy <- amDataset(xy, missingCode = NA, indexColumn = "sample")
+d.xy <- amDataset(xy, missingCode = NA, indexColumn = "sample", metaDataColumn = "id")
 cat("[OK] Dataset ready for analysis.\n", file = opt$verbose, append = TRUE)
 
 # Do profiling. Figure is saved to working directory.
@@ -139,8 +139,10 @@ if (opt$profile) {
     rein <- read.table(opt$output, header = TRUE, sep = ",")
     rein <- gather(rein, key = markerName, value = value, -uniqueGroup, -rowType, -uniqueIndex,
                    -matchIndex, -nUniqueGroup, -alleleMismatch, -matchThreshold, -cutHeight,
-                   -Psib, -score)[, c("uniqueGroup", "rowType", "uniqueIndex", "matchIndex", "Psib",
+                   -Psib, -score, -metaData)[, c("metaData", "uniqueGroup", "rowType", "uniqueIndex", "matchIndex", "Psib",
                                       "markerName", "value")]
+    names(rein)[grepl("metaData", names(rein))] <- "id" # rename metaData to id
+    
     write.table(rein, file = opt$output, quote = FALSE, sep = ",",
                 col.names = TRUE, row.names = FALSE)
     
